@@ -46,7 +46,7 @@ class Game:
 
     def check_events( self ):
         self.player.check_events()
-
+        self.player.is_moving =  any([i in self.held_keys for i in [K_RIGHT,K_LEFT,K_UP,K_DOWN]])
 
     def render_debug( self , surface:pg.surface.Surface ):
         pg.draw.line( surface, [180, 180, 180], [self.surface_size.x / 2, 0],

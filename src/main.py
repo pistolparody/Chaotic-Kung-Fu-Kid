@@ -17,7 +17,7 @@ bg = Color(150,150,255)
 
 pg.init()
 
-window = Window(Pos(1000,725),Pos(800,600),"Chaotic Kung-Fu King",0,Constants.REAL_SIZE)
+window = Window(Pos(1000,725),Pos(800,600),"Chaotic Kung-Fu King",60,Constants.REAL_SIZE)
 menu = Menu(window.get_mask_size())
 textHolder = TextHolder("What's up?",pg.font.Font(None,30))
 textBox = TextBox(Rect(100,100,600,50),textHolder)
@@ -49,10 +49,10 @@ while window.is_running:
 
     game.check_events()
     window.check_events()
-    
+
     game.render(window.get_window())
     window.render_and_update()
-
+    window.tick()
 
     if window.window_size_changed: game.surface_size = window.get_window_size()
 
