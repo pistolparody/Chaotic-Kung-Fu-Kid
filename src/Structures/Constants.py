@@ -4,6 +4,9 @@ from .Enumerator import Enumerator
 GLASS = Color(0,0,0,0)
 DARK_BLUE = Color(30,30,70)
 WOODEN = Color( 70, 40, 40 )
+DEEP_DARK_RED = Color(38,12,18)
+DARK_ICE = Color(30,43,120)
+
 
 BLACK = Color(0,0,0)
 GRAY = Color(127,127,127)

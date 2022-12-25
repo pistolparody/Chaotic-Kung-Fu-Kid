@@ -34,7 +34,7 @@ page.addTextBox(textBox1)
 
 page.update_page()
 
-game = Game()
+game = Game(window.get_window_size())
 
 
 frames = 0
@@ -45,10 +45,11 @@ while window.is_running:
     event_list = pg.event.get()
     menu.run(window.get_mask(),event_list)
 
-    window.get_window().fill(bg)
-    page.render(window.get_window())
+    game.render(window.get_window())
+
     window.run(event_list)
-    # window.get_mask().fill(bg)
+
+    if window.window_size_changed: game.surface_size = window.get_window_size()
 
 
 

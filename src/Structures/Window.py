@@ -18,6 +18,7 @@ class Window :
         self.__mouse_in = False
         self.__mouse_entered = False
         self.__mouse_moved = False
+        self.window_size_changed = False
 
         self.__render_mode = render_mode
 
@@ -101,6 +102,8 @@ class Window :
 
     def get_events( self, event_list=None ) :
 
+        self.window_size_changed = False
+
         if event_list is None : event_list = list()
 
         if len( event_list ) == 0 : event_list = pg.event.get()
@@ -120,6 +123,7 @@ class Window :
 
             if i.type == WINDOWSIZECHANGED :
                 self.__window_size.reset( i.x, i.y )
+                self.window_size_changed = True
 
             if i.type == QUIT or i.type == KEYDOWN and i.key == K_ESCAPE :
                 self.is_running = False
