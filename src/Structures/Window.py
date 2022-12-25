@@ -6,6 +6,7 @@ from .Enumerator import Enumerator
 from . import TextBox
 from .Pos import Pos
 
+
 class Window :
 
     def __init__( self, size: Pos, mask_size: Pos, title: str, fps ,
