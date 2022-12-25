@@ -2,9 +2,14 @@ import pygame as pg
 from .Pos import Pos
 
 class Sprite:
-    def __init__(self,path:str):
+    def __init__(self,path:str=None,surface:pg.surface.Surface=None):
+
+
         self.path = path
-        self.__raw_image = pg.image.load(path)
+        if path is None:
+            self.__raw_image = surface
+        else:
+            self.__raw_image = pg.image.load(path)
 
         self.auto_transform = False
 
@@ -17,9 +22,13 @@ class Sprite:
         self.__transformed_image = self.__raw_image
         self.transform_image()
 
-    def reload( self ,path:str ):
+    def reload( self ,path:str=None ,surface:pg.surface.Surface=None):
         self.path = path
-        self.__raw_image = pg.image.load( path )
+        if path is None :
+            self.__raw_image = surface
+        else :
+            self.__raw_image = pg.image.load( path )
+
         self.transform_image()
 
     def get_raw_image( self ):
