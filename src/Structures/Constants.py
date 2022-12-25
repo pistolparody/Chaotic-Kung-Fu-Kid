@@ -12,9 +12,20 @@ BLACK = Color(0,0,0)
 GRAY = Color(127,127,127)
 WHITE = Color(255,255,255)
 
-Enumerator.reset("WindowMode")
+Enumerator.reset("Window-Mode")
 BLIT_STRETCH = Enumerator.get_next()
 REAL_SIZE = Enumerator.get_next()
+
+Enumerator.reset("Player-Direction")
+NORTH = Enumerator.get_next()
+SOUTH = Enumerator.get_next()
+EAST = Enumerator.get_next()
+WEST = Enumerator.get_next()
+
+Enumerator.reset("Player-State")
+IDLE = Enumerator.get_next()
+WALK = Enumerator.get_next()
+SPRINT = Enumerator.get_next()
 
 
 

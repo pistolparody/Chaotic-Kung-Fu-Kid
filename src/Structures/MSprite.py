@@ -108,8 +108,8 @@ class MSprite :
 
 
 
-    def render( self, surface: pg.surface.Surface , top_left_pos:Pos) :
-        self.__sprite_list[self.__active_sprite_index].render(surface,top_left_pos)
+    def render( self, surface: pg.surface.Surface , center:Pos) :
+        self.__sprite_list[self.__active_sprite_index].render(surface,center)
 
 
     def tick( self ) :

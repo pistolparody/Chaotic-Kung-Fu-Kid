@@ -1,4 +1,5 @@
 import pygame as pg
+from pygame.locals import *
 
 from Player import Player
 
@@ -7,19 +8,21 @@ from Structures.Rect import *
 from Structures.Pos import *
 from Structures.Sprite import *
 from Structures.MSprite import *
-from Structures import Constants
+from Structures import Constants as c
 from Structures.Enumerator import *
 
 
 class Game:
     def __init__( self , surface_size:Pos):
         self.surface_size = surface_size
-        self.background_color = Constants.DEEP_DARK_RED
+        self.background_color = c.DEEP_DARK_RED
         self.should_render_debug = False
+
+        self.held_keys = []
 
         self.player = Player(
             Rect.fromPos(self.surface_size.get_transformed_pos(mult=0.5),
-                         self.surface_size.get_transformed_pos(mult=0.1)))
+                         Pos(self.surface_size.x*0.1,self.surface_size.x*0.1)))
 
 
 
@@ -28,11 +31,22 @@ class Game:
         if event_list is None: event_list = pg.event.get()
 
         for i in event_list:
-            pass
+
+            if i.type == KEYDOWN and i.key not in self.held_keys:
+                self.held_keys.append(i.key)
+            elif i.type == KEYUP and i.key in self.held_keys:
+                self.held_keys.remove(i.key)
+
+            if i.type == KEYDOWN:
+                if i.key == K_RIGHT: self.player.direction = c.EAST
+                if i.key == K_LEFT: self.player.direction = c.WEST
+                if i.key == K_UP: self.player.direction = c.NORTH
+                if i.key == K_DOWN: self.player.direction = c.SOUTH
 
 
     def check_events( self ):
         self.player.check_events()
+
 
     def render_debug( self , surface:pg.surface.Surface ):
         pg.draw.line( surface, [180, 180, 180], [self.surface_size.x / 2, 0],

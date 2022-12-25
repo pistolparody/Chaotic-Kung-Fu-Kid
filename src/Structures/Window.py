@@ -110,6 +110,7 @@ class Window :
         if len( event_list ) == 0 : event_list = pg.event.get()
 
         for i in event_list :
+
             if i.type == MOUSEBUTTONDOWN:
                 if pg.mouse.get_pressed()[0] : print( self.__mouse_pos )
 

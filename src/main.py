@@ -43,12 +43,16 @@ t = time.time()
 while window.is_running:
     frames += 1
     event_list = pg.event.get()
-    menu.run(window.get_mask(),event_list)
+
+    window.get_events(event_list)
+    game.get_events(event_list)
 
     game.check_events()
+    window.check_events()
+    
     game.render(window.get_window())
+    window.render_and_update()
 
-    window.run(event_list)
 
     if window.window_size_changed: game.surface_size = window.get_window_size()
 

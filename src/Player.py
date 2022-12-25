@@ -8,7 +8,7 @@ from Structures.Rect import *
 from Structures.Pos import *
 from Structures.Sprite import *
 from Structures.MSprite import *
-from Structures import Constants
+from Structures import Constants as c
 from Structures.Enumerator import *
 
 
@@ -16,7 +16,11 @@ class Player :
 
     def __init__( self, init_rect: Rect ) :
         self.rect = init_rect
-        self.color = Constants.DARK_ICE
+        self.color = c.DARK_ICE
+
+        self.direction = c.WEST
+        self.state = c.IDLE
+
 
         self.walk_east_sprites:list[Sprite] = []
         self.walk_west_sprites:list[Sprite] = []
@@ -81,14 +85,34 @@ class Player :
             i.transform_images()
 
 
+    def get_center( self ):
+        return self.rect.get_pos().join(self.rect.get_size().get_transformed_pos(mult=0.5))
+
     def set_size( self, size: Pos ) :
         self.rect.get_size().reset( size.x, size.y )
 
 
     def check_events( self ) :
-        self.walk_west_msprite.check_events()
+        target_msprite = self.walk_north_msprite
+        if self.direction == c.SOUTH :
+            target_msprite = self.walk_south_msprite
+        elif self.direction == c.WEST :
+            target_msprite = self.walk_west_msprite
+        elif self.direction == c.EAST :
+            target_msprite = self.walk_east_msprite
+
+        target_msprite.check_events()
 
 
     def render( self, surface: pg.surface.Surface ) :
         pg.draw.rect( surface, self.color, self.rect )
-        self.walk_west_msprite.render(surface,self.rect.get_pos())
+
+        target_msprite = self.walk_north_msprite
+        if self.direction == c.SOUTH:
+            target_msprite = self.walk_south_msprite
+        elif self.direction == c.WEST:
+            target_msprite = self.walk_west_msprite
+        elif self.direction == c.EAST :
+            target_msprite = self.walk_east_msprite
+
+        target_msprite.render(surface,self.get_center())

@@ -22,7 +22,6 @@ class Sprite :
         self.transform_image()
 
 
-
     def reload( self, path: str = None, surface: pg.surface.Surface = None ) :
         self.path = path
         if path is None :
@@ -36,11 +35,13 @@ class Sprite :
     def get_raw_image( self ) :
         return self.__raw_image
 
-    def get_raw_size( self ):
-        return Pos.fromTuple(self.__raw_image.get_size())
 
-    def get_transformed_size( self ):
-        return Pos.fromTuple(self.__transformed_image.get_size())
+    def get_raw_size( self ) :
+        return Pos.fromTuple( self.__raw_image.get_size() )
+
+
+    def get_transformed_size( self ) :
+        return Pos.fromTuple( self.__transformed_image.get_size() )
 
 
     def get_transformed_image( self ) :
@@ -75,7 +76,7 @@ class Sprite :
 
     def reset_scale( self, scale: Pos = None ) :
         if scale is None :
-            self.__scale.reset(1,1)
+            self.__scale.reset( 1, 1 )
         else :
             self.__scale = scale
 
@@ -100,5 +101,6 @@ class Sprite :
         return self
 
 
-    def render( self, surface: pg.surface.Surface, top_left_pos: Pos ) :
-        surface.blit( self.__transformed_image, top_left_pos.get_tuple() )
+    def render( self, surface: pg.surface.Surface, center: Pos ) :
+        surface.blit( self.__transformed_image,
+            center.join( self.get_transformed_size().get_transformed_pos( mult=-0.5 ) ).get_tuple() )
