@@ -32,13 +32,13 @@ class Rect(pg.rect.Rect):
         return self
 
 
-    def reset_pos( self, new_x: int = 0, new_y: int = 0 ) :
+    def reset_pos( self, new_x: float = 0, new_y: float = 0 ) :
         self.top , self.left = new_y , new_x
 
         return self
 
 
-    def reset_size( self, new_x: int = 0, new_y: int = 0 ) :
+    def reset_size( self, new_x: float = 0, new_y: float = 0 ) :
         self.width, self.height = new_x, new_y
 
         return self

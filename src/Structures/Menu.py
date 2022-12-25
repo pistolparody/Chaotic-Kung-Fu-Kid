@@ -18,7 +18,6 @@ class Menu :
             self.page = None
 
 
-
     class Item :
         __id = 0
 

@@ -14,18 +14,21 @@ class TextHolder :
         self.__font = font
         self.__max_width = max_width
 
-        self.__size = Pos(max_width,0)
+        self.__size = Pos( max_width, 0 )
 
         self.__text_list = []
         self.__surface_list = []
         self.__surface = None
         self.update_text()
 
-    def get_surface( self ):
+
+    def get_surface( self ) :
         return self.__surface
 
-    def get_size( self ):
+
+    def get_size( self ) :
         return self.__size
+
 
     def update_text( self, text: str = None ) :
         if text is None : self.__text = self.__text
@@ -38,12 +41,11 @@ class TextHolder :
     def generate_texts( self ) :
         counter = 0
 
-        if self.__max_width is None:
-            self.__text_list.append(self.__text)
+        if self.__max_width is None :
+            self.__text_list.append( self.__text )
             return
 
         while counter <= len( self.__text ) :
-
             first = self.__text[:counter + 1]
             second = self.__text[counter + 1 :]
             next_step = self.__text[:counter + 2]
@@ -60,30 +62,32 @@ class TextHolder :
 
     def generate_surfaces( self ) :
         for i in self.__text_list :
-            self.__surface_list.append(
-                self.__font.render( i, True, self.__color) )
+            text_surface = self.__font.render( i, True, self.__color )
+            if self.__max_width is None : self.__max_width = text_surface.get_width()
 
-    def generate_surface( self ):
-        top_left_pos = Pos(0,0)
+            self.__surface_list.append( text_surface )
+
+
+    def generate_surface( self ) :
+        top_left_pos = Pos( 0, 0 )
 
         height = 0
-        for i in self.__surface_list:
+        for i in self.__surface_list :
             height += i.get_height()
-        self.__size.reset(self.__max_width,height)
-        self.__surface = pg.surface.Surface(self.__size.get_tuple()).convert_alpha()
-        self.__surface.fill(Constants.GLASS)
+        self.__size.reset( self.__max_width, height )
 
-        for i in self.__surface_list:
-            self.__surface.blit(i,top_left_pos.get_tuple())
+        self.__surface = pg.surface.Surface( self.__size.get_tuple() ).convert_alpha()
+        self.__surface.fill( Constants.GLASS )
+
+        for i in self.__surface_list :
+            self.__surface.blit( i, top_left_pos.get_tuple() )
             top_left_pos.y += i.get_height()
 
 
+    def render( self, surface: pg.surface.Surface, top_left_pos: Pos = None ) :
+        if top_left_pos is None : top_left_pos = Pos( 0, 0 )
 
-
-    def render( self, surface:pg.surface.Surface , top_left_pos:Pos = None) :
-        if top_left_pos is None: top_left_pos = Pos(0,0)
-
-        surface.blit(self.__surface,top_left_pos.get_tuple())
+        surface.blit( self.__surface, top_left_pos.get_tuple() )
 
 
 

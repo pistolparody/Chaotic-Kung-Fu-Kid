@@ -33,8 +33,23 @@ class TextBox:
         self.centralize_text()
         self.update_surface()
 
+    def set_pos( self, pos:Pos):
+        self.get_rect().reset_pos(pos.x,pos.y)
+
     def get_rect( self ):
         return self.__rect
+
+    def get_pos( self ):
+        return self.__rect.get_pos()
+
+    def get_size( self ):
+        return self.__rect.get_pos()
+
+    def get_width( self ):
+        return self.get_rect().get_size().x
+
+    def get_height( self ):
+        return self.get_rect().get_size().y
 
     def reset_color( self ,color:Color=None,hover_color:Color=None):
         if color is None: color = Color(0,0,0)
