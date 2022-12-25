@@ -8,7 +8,7 @@ from .Page import Page
 
 from .TextHolder import TextHolder
 from .TextBox import TextBox
-from .Enums import Payams
+
 
 
 class Menu :

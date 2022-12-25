@@ -9,12 +9,15 @@ from Structures.TextBox import TextBox
 from Structures.TextHolder import TextHolder
 from Structures.Rect import Rect
 from Structures.Page import Page
+from Structures import Constants
+from Game import Game
+
 
 bg = Color(150,150,255)
 
 pg.init()
 
-window = Window(Pos(1000,725),Pos(800,600),"Chaotic Kung-Fu King",0)
+window = Window(Pos(1000,725),Pos(800,600),"Chaotic Kung-Fu King",0,Constants.REAL_SIZE)
 menu = Menu(window.get_mask_size())
 textHolder = TextHolder("What's up?",pg.font.Font(None,30))
 textBox = TextBox(Rect(100,100,600,50),textHolder)
@@ -31,6 +34,7 @@ page.addTextBox(textBox1)
 
 page.update_page()
 
+game = Game()
 
 
 frames = 0
@@ -41,9 +45,12 @@ while window.is_running:
     event_list = pg.event.get()
     menu.run(window.get_mask(),event_list)
 
+    window.get_window().fill(bg)
+    page.render(window.get_window())
     window.run(event_list)
-    window.get_mask().fill(bg)
-    page.render(window.get_mask())
+    # window.get_mask().fill(bg)
+
+
 
     if frames >= 60:
         frames = 0

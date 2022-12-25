@@ -1,6 +1,7 @@
 import pygame as pg
 
-from .Enums import Errors
+from . import Enumerator
+
 
 class Color(pg.color.Color):
     def __init__(self,r:int,g:int,b:int,a:int=255):
@@ -25,7 +26,7 @@ class Color(pg.color.Color):
 
     def join( self, color, scale: float = 1, p_scale: float = None ) :
         if p_scale is None : p_scale = 1 - scale
-        if scale < 0 or scale > 1 : raise ValueError( Errors.InvalidScale )
+        if scale < 0 or scale > 1 : raise ValueError( Enumerator.InvalidScale.data )
 
         color = color.copy()
 

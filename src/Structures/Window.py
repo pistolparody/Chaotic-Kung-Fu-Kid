@@ -1,18 +1,25 @@
 import pygame as pg
 from pygame.locals import *
 
+from . import Constants
+from .Enumerator import Enumerator
 from . import TextBox
 from .Pos import Pos
 
 class Window :
 
-    def __init__( self, size: Pos, mask_size: Pos, title: str, fps ) :
+    def __init__( self, size: Pos, mask_size: Pos, title: str, fps ,
+                            render_mode:Enumerator = None) :
+
+        if render_mode is None: render_mode = Constants.BLIT_STRETCH
 
         self.is_running = True
         self.__size_changed = False
         self.__mouse_in = False
         self.__mouse_entered = False
         self.__mouse_moved = False
+
+        self.__render_mode = render_mode
 
         self.__fps = fps
         self.__last_dropped_file = None
@@ -61,6 +68,8 @@ class Window :
     def get_dropped_file( self ) -> str or None :
         return self.__last_dropped_file
 
+    def set_render_mode( self , render_mode:Enumerator ):
+        self.__render_mode = render_mode
 
     def set_fps( self , fps:int ):
         self.__fps = fps
@@ -81,9 +90,11 @@ class Window :
 
 
     def render_and_update( self ) :
-        transformed_mask = pg.transform.scale( self.__mask, self.__window_size.get_tuple() )
+        if self.__render_mode == Constants.BLIT_STRETCH:
+            transformed_mask = pg.transform.scale( self.__mask, self.__window_size.get_tuple() )
 
-        self.__window.blit( transformed_mask, [0, 0] )
+            self.__window.blit( transformed_mask, [0, 0] )
+
 
         pg.display.update()
 
