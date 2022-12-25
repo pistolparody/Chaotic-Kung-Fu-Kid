@@ -4,7 +4,6 @@ from .Pos import Pos
 class Sprite:
     def __init__(self,path:str=None,surface:pg.surface.Surface=None):
 
-
         self.path = path
         if path is None:
             self.__raw_image = surface

@@ -41,25 +41,30 @@ class Player :
         self.walk_east_sprites.append( self.__atlas.create_image( "Walk_EAST_1.png" ) )
         self.walk_east_sprites.append( self.__atlas.create_image( "Walk_EAST_2.png" ) )
         self.walk_east_sprites.append( self.__atlas.create_image( "Walk_EAST_3.png" ) )
-
+        self.walk_east_sprites = [Sprite(surface=i) for i in self.walk_west_sprites]
 
         self.walk_west_sprites.append( self.__atlas.create_image( "Walk_WEST_0.png" ) )
         self.walk_west_sprites.append( self.__atlas.create_image( "Walk_WEST_1.png" ) )
         self.walk_west_sprites.append( self.__atlas.create_image( "Walk_WEST_2.png" ) )
         self.walk_west_sprites.append( self.__atlas.create_image( "Walk_WEST_3.png" ) )
+        self.walk_west_sprites = [Sprite(surface=i) for i in self.walk_west_sprites]
 
         self.walk_north_sprites.append( self.__atlas.create_image( "Walk_NORTH_0.png" ) )
         self.walk_north_sprites.append( self.__atlas.create_image( "Walk_NORTH_1.png" ) )
         self.walk_north_sprites.append( self.__atlas.create_image( "Walk_NORTH_2.png" ) )
         self.walk_north_sprites.append( self.__atlas.create_image( "Walk_NORTH_3.png" ) )
+        self.walk_north_sprites = [Sprite(surface=i) for i in self.walk_north_sprites]
+
 
         self.walk_south_sprites.append( self.__atlas.create_image( "Walk_SOUTH_0.png" ) )
         self.walk_south_sprites.append( self.__atlas.create_image( "Walk_SOUTH_1.png" ) )
         self.walk_south_sprites.append( self.__atlas.create_image( "Walk_SOUTH_2.png" ) )
         self.walk_south_sprites.append( self.__atlas.create_image( "Walk_SOUTH_3.png" ) )
+        self.walk_south_sprites = [Sprite(surface=i) for i in self.walk_south_sprites]
+
 
         self.walk_east_msprite = MSprite( self.walk_east_sprites, 0.4 )
-        self.walk_west_msprite = MSprite( self.walk_west_sprites, 0.4 )
+        self.walk_west_msprite = MSprite( self.walk_west_sprites, 0.2 )
         self.walk_north_msprite = MSprite( self.walk_north_sprites, 0.4 )
         self.walk_south_msprite = MSprite( self.walk_south_sprites, 0.4 )
 
@@ -75,8 +80,9 @@ class Player :
 
 
     def check_events( self ) :
-        pass
+        self.walk_west_msprite.check_events()
 
 
     def render( self, surface: pg.surface.Surface ) :
         pg.draw.rect( surface, self.color, self.rect )
+        self.walk_west_msprite.render(surface,self.rect.get_pos())

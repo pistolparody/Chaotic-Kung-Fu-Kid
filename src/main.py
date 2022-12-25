@@ -45,6 +45,7 @@ while window.is_running:
     event_list = pg.event.get()
     menu.run(window.get_mask(),event_list)
 
+    game.check_events()
     game.render(window.get_window())
 
     window.run(event_list)

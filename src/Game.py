@@ -32,7 +32,7 @@ class Game:
 
 
     def check_events( self ):
-        pass
+        self.player.check_events()
 
     def render_debug( self , surface:pg.surface.Surface ):
         pg.draw.line( surface, [180, 180, 180], [self.surface_size.x / 2, 0],

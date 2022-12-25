@@ -13,8 +13,8 @@ class MSprite :
         self.__sprite_list = sprite_list
         self.__active_sprite_index = 0
 
-        self.__animation_interval = animation_interval
-        self.__last_tick_time = time.time()
+        self.__animation_interval = 1
+        self.__last_tick_time = 0
 
         self.auto_transform = False
         self.__x_flip = False
@@ -98,9 +98,12 @@ class MSprite :
 
     def check_events( self ) :
         current_time = time.time()
-        if self.__last_tick_time + self.__animation_interval > current_time:
+
+        if current_time  > self.__last_tick_time + self.__animation_interval:
+
             self.__last_tick_time = current_time
             self.tick()
+
 
 
     def render( self, surface: pg.surface.Surface , top_left_pos:Pos) :
