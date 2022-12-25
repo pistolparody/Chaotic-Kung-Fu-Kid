@@ -1,4 +1,8 @@
 class Pos :
+    @staticmethod
+    def fromTuple(pos:tuple[float,float]):
+        return Pos(pos[0],pos[1])
+
     def __init__( self, x: float, y: float ) :
         self.x = x
         self.y = y
@@ -21,6 +25,13 @@ class Pos :
     def get_tuple( self ) :
         return self.x, self.y
 
+    def mult_transform( self ,x_mult:float = 1,y_mult:float=1):
+        self.x,self.y = self.x * x_mult , self.y * y_mult
+        return self
+
+    def get_mult_transform( self ):
+        return self.copy().mult_transform()
+
     def transform( self, Sum: float = 0, mult: float = 1, sum_first: bool = False ) :
         if not sum_first :
             self.x *= mult
@@ -37,10 +48,10 @@ class Pos :
 
 
     def get_transformed_pos( self, Sum: float = 0, mult: float = 1, sum_first: bool = False ) :
-        return Pos( self.x, self.y ).transform( Sum, mult, sum_first )
+        return self.copy().transform( Sum, mult, sum_first )
 
     def get_transformed_tuple( self, Sum: float = 0, mult: float = 1, sum_first: bool = False ) :
-        return Pos( self.x, self.y ).transform( Sum, mult, sum_first ).get_tuple()
+        return self.copy().transform( Sum, mult, sum_first ).get_tuple()
 
     def join( self, pos ) :
         return Pos( self.x + pos.x, self.y + pos.y )

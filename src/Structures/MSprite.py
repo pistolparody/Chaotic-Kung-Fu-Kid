@@ -13,7 +13,7 @@ class MSprite :
         self.__sprite_list = sprite_list
         self.__active_sprite_index = 0
 
-        self.__animation_interval = 1
+        self.__animation_interval = animation_interval
         self.__last_tick_time = 0
 
         self.auto_transform = False
@@ -55,6 +55,8 @@ class MSprite :
     def get_scale( self ) :
         return self.__scale
 
+    def get_sprite_list( self ):
+        return self.__sprite_list
 
     def reset_flips( self, x_flip: bool = False, y_flip: bool = False ) :
         self.__x_flip, self.__y_flip = x_flip, y_flip
