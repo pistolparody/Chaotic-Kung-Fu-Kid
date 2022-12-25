@@ -11,25 +11,23 @@ It's basic stuff.
 
 Running this project is easy A since it's written in python and I just use Pygame.
 
-### STEP 1 : install Pygame by pip 
+#### STEP 1 : install Pygame by pip 
 
-```
+`
 pip install pygame
-```
+`
 
-### STEP 2 : clone the repo
-```commandline
-https://github.com/maxqxam/Chaotic-Kung-Fu-Kid
+#### STEP 2 : clone the repo
 ```
-### STEP 3 : enter ./src 
-```commandline
+git clone https://github.com/maxqxam/Chaotic-Kung-Fu-Kid
+```
+#### STEP 3 : enter ./src 
+`
 cd Chaotic-Kung-Fu-Kid/src
-```
-### STEP 4 : Run
+`
+#### STEP 4 : Run
 
-```commandline
-python main.py
-```
+``python main.py``
 
 
 

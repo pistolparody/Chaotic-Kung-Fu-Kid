@@ -20,7 +20,7 @@ class Player :
 
         self.direction = c.WEST
         self.state = c.IDLE
-        self.move_speed_scale = 0.1
+        self.move_speed_scale = 0.03
 
         self.is_moving = False
 
