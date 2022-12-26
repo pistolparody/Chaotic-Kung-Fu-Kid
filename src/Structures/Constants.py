@@ -25,7 +25,10 @@ WEST = Enumerator.get_next()
 Enumerator.reset("Player-State")
 IDLE = Enumerator.get_next()
 WALK = Enumerator.get_next()
-SPRINT = Enumerator.get_next()
+RUN = Enumerator.get_next()
+CLIMB = Enumerator.get_next()
+PUSH = Enumerator.get_next()
+SWING = Enumerator.get_next()
 
 
 

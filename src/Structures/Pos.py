@@ -8,6 +8,7 @@ class Pos(Vector2) :
     def __init__( self, x: float, y: float ) :
         super().__init__(x,y)
 
+
     def __str__( self ) :
         return "[PosObject : ({},{})]".format( self.x, self.y )
 
