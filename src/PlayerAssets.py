@@ -62,7 +62,7 @@ class PlayerAssets :
         climb_row = {
             c.EAST : self.climb_east_msprite,
             c.WEST : self.climb_west_msprite,
-            c.NORTH : self.climb_west_msprite,
+            c.NORTH : self.climb_north_msprite,
             c.SOUTH : self.climb_south_msprite
         }
 
@@ -123,15 +123,17 @@ class PlayerAssets :
         self.push_north_msprite = MSprite(self.push_north_sprites, 0.5)
         self.push_south_msprite = MSprite(self.push_south_sprites, 0.5)
 
-        self.swing_east_msprite = MSprite(self.swing_east_sprites, 0.5)
-        self.swing_west_msprite = MSprite(self.swing_west_sprites, 0.5)
-        self.swing_north_msprite = MSprite(self.swing_north_sprites, 0.5)
-        self.swing_south_msprite = MSprite(self.swing_south_sprites, 0.5)
+        self.swing_east_msprite = MSprite(self.swing_east_sprites, 0.1)
+        self.swing_west_msprite = MSprite(self.swing_west_sprites, 0.1)
+        self.swing_north_msprite = MSprite(self.swing_north_sprites, 0.1)
+        self.swing_south_msprite = MSprite(self.swing_south_sprites, 0.1)
 
-        self.run_east_msprite = MSprite(self.run_east_sprites, 0.5)
-        self.run_west_msprite = MSprite(self.run_west_sprites, 0.5)
-        self.run_north_msprite = MSprite(self.run_north_sprites, 0.5)
-        self.run_south_msprite = MSprite(self.run_south_sprites, 0.5)
+        self.run_east_msprite = MSprite(self.run_east_sprites, 0.2)
+        self.run_west_msprite = MSprite(self.run_west_sprites, 0.2)
+        self.run_north_msprite = MSprite(self.run_north_sprites, 0.2)
+        self.run_south_msprite = MSprite(self.run_south_sprites, 0.2)
+
+
 
 
     def __load_idle_sprites( self ) :
