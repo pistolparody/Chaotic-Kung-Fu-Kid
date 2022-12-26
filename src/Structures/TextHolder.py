@@ -13,7 +13,7 @@ class TextHolder :
         self.__text = text
         self.__font = font
         self.__max_width = max_width
-
+        if max_width is None: max_width = 0
         self.__size = Pos( max_width, 0 )
 
         self.__text_list = []

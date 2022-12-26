@@ -1,11 +1,12 @@
-class Pos :
+from pygame.math import Vector2
+
+class Pos(Vector2) :
     @staticmethod
     def fromTuple(pos:tuple[float,float]):
         return Pos(pos[0],pos[1])
 
     def __init__( self, x: float, y: float ) :
-        self.x = x
-        self.y = y
+        super().__init__(x,y)
 
     def __str__( self ) :
         return "[PosObject : ({},{})]".format( self.x, self.y )
